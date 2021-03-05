@@ -1,0 +1,29 @@
+
+.cocktails{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    padding-bottom:50px;
+    margin: auto;
+    width: 70%;
+}
+
+.cocktail {
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: solid 1px black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cocktail img {
+    width: auto;
+    height: 200px;
+}

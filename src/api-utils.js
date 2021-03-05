@@ -1,11 +1,12 @@
 import request from 'superagent';
 
-const URL = 'https://lit-reaches-79425.herokuapp.com';
+const URL = 'http://localhost:3000';
 
 export async function signUpUser(email, password) {
     const response = await request
         .post(`${URL}/auth/signup`)
         .send({ email, password });
+    
     return response.body;
 }
 
@@ -13,27 +14,39 @@ export async function logInUser(email, password) {
     const response = await request
         .post(`${URL}/auth/signin`)
         .send({ email, password });
+    
     return response.body;
 }
 
-export async function addTodo(todo, token) {
+export async function addFavorite(cocktail, token) {
     const response = await request
-        .post(`${URL}/api/todos`)
+        .post(`${URL}/api/favorites`)
         .set('Authorization', token)
-        .send({ todo });
+        .send(cocktail);
+    
     return response.body;
 }
 
-export async function completeTodo(todoId, token) {
+
+export async function getFavorites(token) {
     const response = await request
-        .put(`${URL}/api/todos/${todoId}`)
+        .get(`${URL}/api/favorites`)
         .set('Authorization', token)
+    
     return response.body;
 }
 
-export async function getTodos(token) {
+export async function searchCocktails(query) {
     const response = await request
-        .get(`${URL}/api/todos`)
+        .get(`${URL}/cocktails/?search=${query}`)
+        
+    return response.body.drinks;
+}
+
+export async function deleteFavorite(id, token) {
+    const response = await request
+        .delete(`${URL}/api/favorites/${id}`)
         .set('Authorization', token)
+    
     return response.body;
 }

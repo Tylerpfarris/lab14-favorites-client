@@ -17,18 +17,24 @@ export default class LogInPage extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-
+    try {
         const user = await logInUser(this.state.email, this.state.password);
 
         this.props.handleUserChange(user);
 
-        this.props.history('/favorites');
+        this.props.history.push('/favorites');
+    } catch(e) {
+        this.setState({ error: e.response.body.error })
+    }
     }
 
     render() {
         return (
             <div>
                 <h3>Log In</h3>
+                {
+                    this.state.error && <h5 style={{ color: 'blueviolet' }}>{this.state.error}</h5>
+                }
                 <form onSubmit={this.handleSubmit}>
                     <lable>Email
                      <input value={this.state.email}

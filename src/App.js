@@ -15,6 +15,7 @@ import { getUserFromLocalStorage, putUserInLocalStorage } from './local-storage-
 import PrivateRoute from './Components/PrivateRoute.js';
 import FavoritesListPage from './Favorites/FavoritesListPage';
 import CocktailSearchPage from './CocktailSearchPage/CocktailSearchPage'
+import DetailsPage from './Favorites/DetailsPage';
 
 export default class App extends Component {
   state = {
@@ -55,10 +56,18 @@ export default class App extends Component {
                                 user={this.state.user}
                                 {...routerProps} />} 
                         />
+                        <PrivateRoute 
+                            path="/details" 
+                            exact
+                            token={user && user.token}
+                            render={(routerProps) =>
+                            <DetailsPage
+                                user={this.state.user}
+                                {...routerProps} />} 
+                        />
                         <Route 
                             path="/cocktails" 
                             exact
-                            token={user && user.token}
                             render={(routerProps) =>
                             <CocktailSearchPage
                                 user={this.state.user}
