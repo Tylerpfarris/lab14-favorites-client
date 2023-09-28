@@ -1,0 +1,10 @@
+.headerDiv { 
+  padding: 10px;  
+  height: fit-content;
+}
+
+.headerDiv  p {
+    display: inline;
+    margin-right: 5px;
+}
+
